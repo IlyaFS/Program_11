@@ -10,24 +10,38 @@ namespace Program_11
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Найти решения уравнения 0=k*x+b");
+            Console.WriteLine();
+            Console.Write("Введите действиетльное число k: ");
             double k = double.Parse(Console.ReadLine());
-            int x = int.Parse(Console.ReadLine());
+            Console.Write("Введите действиетльное число b: ");
             double b = double.Parse(Console.ReadLine());
 
-            Lab11 lab = new Lab11();
-
-            lab.O = k * x + b;
-
+            Lab11 lab = new Lab11 (k, b);
+            Console.WriteLine();
             lab.Root();
-
             Console.ReadKey();
         }
         struct Lab11
         {
-            public double O;
+            public double K { get; set; }
+            public double B { get; set; }
+            public Lab11 (double k, double b)
+            {
+                K = k;
+                B = b;
+            }
             public void Root()
             {
-                Console.WriteLine(O);
+                if (K == 0 && B == 0)
+                    Console.WriteLine("Уравнение бесконечно");
+                else if (K == 0)
+                    Console.WriteLine("Уравнение не имеет решения");
+                else
+                {
+                    double x = -B / K;
+                    Console.WriteLine("Ответ x= {0}", x);
+                }
             }
         }
     }
